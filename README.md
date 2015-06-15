@@ -19,6 +19,7 @@ docker run -i --rm  -e FLEETCTL_TUNNEL=185.19.218.98 \
     -e FLEETCTL_ENDPOINT=http://127.0.0.1:2379 \
     -v $(pwd)/keys/staging-user:/opt/scripts/coreos_ssh_key:ro \
     -v $(pwd):/opt/scripts/out \
+    -v $(pwd):/src:ro \
     -t service-deployer \
     bash
 ~~~

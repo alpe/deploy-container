@@ -17,6 +17,7 @@ COPY scripts /opt/scripts
 COPY fleetctl /root/.fleetctl
 
 VOLUME /opt/scripts/out
+VOLUME /src
 
 ENV topic_replication_factor=2
 

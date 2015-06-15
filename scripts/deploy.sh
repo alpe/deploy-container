@@ -6,13 +6,21 @@ build_hash=$2
 
 dir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 out_dir=/opt/scripts/out
+src_dir=/src
 service_unit="${service_name}-${build_hash}"
 service_file="$out_dir/$service_unit@.service"
 topic_unit="${service_name}-topics-${build_hash}.service"
 
 # Create fleet/ systemd service file
-echo "Creating service file: $service_file"
-${dir}/service_template.sh ${service_name} ${build_hash} > ${service_file}
+if [[ -z ${src_dir}/ci/service_template ]]; then
+	echo "Using project service_template"
+	${src_dir}/ci/service_template ${service_name} ${build_hash} > ${service_file}
+else
+	echo "Creating service file: $service_file"
+	${dir}/service_template.sh ${service_name} ${build_hash} > ${service_file}
+
+fi
+
 
 # create topics via container
 ${dir}/service_topics_template.sh ${service_name}  > ${out_dir}/${topic_unit}
