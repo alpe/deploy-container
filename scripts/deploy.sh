@@ -1,4 +1,5 @@
-#! /bin/bash -e
+#!/bin/bash -e
+echo "Shell version: $($SHELL --version)"
 
 service_name=$1
 build_hash=$2
@@ -12,7 +13,8 @@ service_file="$out_dir/$service_unit@.service"
 topic_unit="${service_name}-topics-${build_hash}.service"
 
 # Create fleet/ systemd service file
-if [[ -z ${src_dir}/ci/service_template ]]; then
+echo "Using source dir: ${src_dir}"
+if [ -x ${src_dir}/ci/service_template ]; then
 	echo "Using project service_template"
 	${src_dir}/ci/service_template ${service_name} ${build_hash} > ${service_file}
 else
@@ -43,6 +45,12 @@ echo "Starting create topic job"
 fleetctl start ${topic_unit}
 sleep 4 # because of topic race condition, lame fix
 
-echo "Starting ${service_name} service"
-fleetctl start ${service_unit}@1
+echo "Starting ${NUMBER_SERVICE_INSTANCES} ${service_name} service instances"
+
+for (( id=1; id<=$NUMBER_SERVICE_INSTANCES; id++ ))
+do
+	echo "  instance $id starting"
+	fleetctl start "${service_unit}@${id}"
+	echo "  instance $id done"
+done
 

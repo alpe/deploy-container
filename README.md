@@ -6,6 +6,7 @@ Containerized environment to configure/ deploy to staging.
 * FLEETCTL_TUNNEL
 * FLEETCTL_ENDPOINT
 
+* NUMBER_SERVICE_INSTANCES - number of containers for this image to start
 
 ## Build
 ~~~bash

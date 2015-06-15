@@ -19,12 +19,11 @@ COPY fleetctl /root/.fleetctl
 VOLUME /opt/scripts/out
 VOLUME /src
 
-ENV topic_replication_factor=2
-
 # Fleet command line client 
 ENV FLEETCTL_TUNNEL ""
 ENV FLEETCTL_STRICT_HOST_KEY_CHECKING=true
 ENV FLEETCTL_ENDPOINT http://127.0.0.1:4001
 
+ENV NUMBER_SERVICE_INSTANCES=1
 
 WORKDIR /opt/scripts
