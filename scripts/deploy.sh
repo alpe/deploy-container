@@ -33,6 +33,7 @@ ssh-add ${file}
 cd ${out_dir}
 echo "Starting create topic job"
 fleetctl start ${topic_unit}
+sleep 4 # because of topic race condition, lame fix
 
 echo "Starting ${service_name} service"
 fleetctl start ${service_unit}@1
