@@ -1,6 +1,12 @@
 ## Deploy container
 Containerized environment to configure/ deploy to staging.
 
+## Configuration
+* FLEETCTL_STRICT_HOST_KEY_CHECKING
+* FLEETCTL_TUNNEL
+* FLEETCTL_ENDPOINT
+
+
 ## Build
 ~~~bash
 docker build -t service-deployer .

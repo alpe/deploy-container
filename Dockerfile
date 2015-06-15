@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y curl openssh-client
 
 # Install fleet client
 ENV FLEET_VERSION 0.10.1
-ENV FLEETCTL_ENDPOINT http://127.0.0.1:4001
 
 RUN curl -LOks https://github.com/coreos/fleet/releases/download/v${FLEET_VERSION}/fleet-v${FLEET_VERSION}-linux-amd64.tar.gz && \
     tar zxvf fleet-v${FLEET_VERSION}-linux-amd64.tar.gz && \
@@ -20,5 +19,11 @@ COPY fleetctl /root/.fleetctl
 VOLUME /opt/scripts/out
 
 ENV topic_replication_factor=2
+
+# Fleet command line client 
+ENV FLEETCTL_TUNNEL ""
+ENV FLEETCTL_STRICT_HOST_KEY_CHECKING=true
+ENV FLEETCTL_ENDPOINT http://127.0.0.1:4001
+
 
 WORKDIR /opt/scripts
