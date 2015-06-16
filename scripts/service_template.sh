@@ -16,5 +16,5 @@ ExecStart=/usr/bin/docker run --name ${service_name}-%i docker-registry.optiopay
 ExecStop=/usr/bin/docker stop ${service_name}-%i
 
 [X-Fleet]
-Conflicts=${service_name}@*.service
+Conflicts=${service_name}-${build_hash}@*.service
 EOF

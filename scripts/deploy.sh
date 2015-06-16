@@ -25,7 +25,7 @@ fi
 
 
 # create topics via container
-${dir}/service_topics_template.sh ${service_name}  > ${out_dir}/${topic_unit}
+${dir}/service_topics_template.sh ${service_name} ${build_hash} > ${out_dir}/${topic_unit}
 
 # roll out
 ## setup ssh
