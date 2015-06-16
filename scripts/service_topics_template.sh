@@ -5,6 +5,7 @@ service_name=$1
 cat <<EOF
 [Unit]
 Description=${service_name}-topics
+Before=${service_name}
 
 [Service]
 User=core

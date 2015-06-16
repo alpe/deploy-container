@@ -43,7 +43,6 @@ ssh-add ${file}
 cd ${out_dir}
 echo "Starting create topic job"
 fleetctl start ${topic_unit}
-sleep 4 # because of topic race condition, lame fix
 
 echo "Starting ${NUMBER_SERVICE_INSTANCES} ${service_name} service instances"
 
@@ -51,6 +50,5 @@ for (( id=1; id<=$NUMBER_SERVICE_INSTANCES; id++ ))
 do
 	echo "  instance $id starting"
 	fleetctl start "${service_unit}@${id}"
-	echo "  instance $id done"
 done
 
