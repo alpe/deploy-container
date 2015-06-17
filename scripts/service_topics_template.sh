@@ -6,7 +6,7 @@ build_hash=$2
 cat <<EOF
 [Unit]
 Description=${service_name}-topics
-Before=${service_name}-${build_hash}
+Before=${service_name}-${build_hash}@1.service
 
 [Service]
 User=core
