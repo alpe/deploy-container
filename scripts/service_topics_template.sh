@@ -16,7 +16,7 @@ Environment=release=latest
 ExecStartPre=-/usr/bin/docker kill ${service_name}-topics
 ExecStartPre=-/usr/bin/docker rm ${service_name}-topics
 ExecStartPre=/usr/bin/docker pull docker-registry.optiopay.com/kafka-manager:${release}
-ExecStart=/usr/bin/docker run --name ${service_name}-topics docker-registry.optiopay.com/kafka-manager:${release} \
+ExecStart=/usr/bin/docker run --read-only --name ${service_name}-topics docker-registry.optiopay.com/kafka-manager:${release} \
   '/opt/scripts/create_topics.sh' '${service_name}' 'zookeeper.skydns.local:2181'
 
 

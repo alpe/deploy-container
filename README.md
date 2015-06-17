@@ -1,6 +1,9 @@
 ## Deploy container
 Containerized environment to configure/ deploy to staging.
 
+* Generates default fleet service files to `create topics` and `run service`
+* Filesystems are read only
+
 ## Configuration
 * FLEETCTL_STRICT_HOST_KEY_CHECKING
 * FLEETCTL_TUNNEL

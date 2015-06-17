@@ -11,7 +11,7 @@ User=core
 
 ExecStartPre=-/usr/bin/docker kill ${service_name}-%i
 ExecStartPre=-/usr/bin/docker rm ${service_name}-%i
-ExecStart=/usr/bin/docker run --name ${service_name}-%i docker-registry.optiopay.com/${service_name}:${build_hash}
+ExecStart=/usr/bin/docker run --read-only --name ${service_name}-%i docker-registry.optiopay.com/${service_name}:${build_hash}
 
 ExecStop=/usr/bin/docker stop ${service_name}-%i
 
